@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StudyBuddy – Notes</title>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <h1>📒 My Notes</h1>
+
+  <!-- Note Form -->
+  <form id="noteForm">
+    <label for="titleInput">Note Title:</label><br>
+    <input type="text" id="titleInput" placeholder="Note Title" required /><br><br>
+
+    <label for="contentInput">Note Content:</label><br>
+    <textarea id="contentInput" placeholder="Write your note..." required></textarea><br><br>
+
+    <button type="submit">Add Note</button>
+    <p id="formError"></p>
+  </form>
+
+  <!-- Notes Display Section -->
+  <h2>📝 All Notes</h2>
+  <ul id="notesList">
+    <!-- Notes will be added here dynamically -->
+  </ul>
+
+  <!-- Link to external JavaScript -->
+  <script src="../js/notes.js"></script>
+</body>
+</html>

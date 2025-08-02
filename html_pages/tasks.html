@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StudyBuddy – Tasks</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <h1>📋 My Tasks</h1>
+
+  <!-- Task Form -->
+  <form id="taskForm">
+    <label for="titleInput">Task Title:</label><br>
+    <input type="text" id="titleInput" placeholder="Task title" required /><br><br>
+
+    <label for="descriptionInput">Description:</label><br>
+    <textarea id="descriptionInput" placeholder="Task description" required></textarea><br><br>
+
+    <label for="dueDateInput">Due Date:</label><br>
+    <input type="date" id="dueDateInput" /><br><br>
+
+    <label for="categoryInput">Category:</label><br>
+    <input type="text" id="categoryInput" placeholder="e.g. Exam, Project" required /><br><br>
+
+    <label for="priorityInput">Priority:</label><br>
+    <select id="priorityInput" required>
+      <option value="">-- Select Priority --</option>
+      <option value="Low">Low</option>
+      <option value="Medium">Medium</option>
+      <option value="High">High</option>
+    </select><br><br>
+
+    <button type="submit">Add Task</button>
+    <p id="formError"></p>
+  </form>
+
+  <!-- Task List Section -->
+  <h2>📌 All Tasks</h2>
+  <ul id="tasksList">
+    <!-- Tasks will be added here dynamically -->
+  </ul>
+
+  <script src="../js/tasks.js"></script>
+</body>
+</html>

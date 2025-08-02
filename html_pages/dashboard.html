@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daily Study Dashboard</title>
+
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="../styles/style.css" />
+
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f9f9e3;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section {
+      background: #fff9c4;
+      border: 2px solid #f0e68c;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+
+    .section h2 {
+      margin-top: 0;
+      font-size: 1.4em;
+      border-bottom: 2px solid #d2b200;
+      padding-bottom: 5px;
+    }
+
+    .task, .note {
+      background: white;
+      padding: 10px;
+      margin: 10px 0;
+      border-left: 5px solid #ffd54f;
+    }
+
+    .task.done {
+      text-decoration: line-through;
+      color: gray;
+    }
+
+    .note.pinned {
+      border-left-color: #ff6f00;
+    }
+
+    .meta {
+      font-size: 0.9em;
+      color: #666;
+    }
+
+    #pomodoro {
+      text-align: center;
+    }
+
+    #pomodoro-timer {
+      font-size: 2.5em;
+      margin: 20px 0;
+    }
+
+    .pomo-btn {
+      padding: 8px 16px;
+      margin: 5px;
+      border: none;
+      background-color: #ffd54f;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .pomo-btn:hover {
+      background-color: #ffca28;
+    }
+  </style>
+</head>
+<body>
+  <h1>📚 Daily Study Dashboard</h1>
+
+  <div class="section" id="todayTasksSection">
+    <h2>✅ Today’s Tasks</h2>
+    <div id="taskList">Loading...</div>
+  </div>
+
+  <div class="section" id="pinnedNotesSection">
+    <h2>📌 Pinned Notes</h2>
+    <div id="pinnedNotes">Loading...</div>
+  </div>
+
+  <div class="section" id="quoteOfTheDay">
+    <h2>💡 Quote of the Day</h2>
+    <div id="quoteText">Loading...</div>
+  </div>
+
+  <div class="section" id="upcomingDeadlines">
+    <h2>📅 Upcoming Deadlines</h2>
+    <div id="upcomingList">Loading...</div>
+  </div>
+
+  <div class="section" id="pomodoro">
+    <h2>⏳ Pomodoro Timer</h2>
+    <div id="pomodoro-timer">25:00</div>
+    <button class="pomo-btn" onclick="startPomodoro()">Start</button>
+    <button class="pomo-btn" onclick="pausePomodoro()">Pause</button>
+    <button class="pomo-btn" onclick="resetPomodoro()">Reset</button>
+  </div>
+
+  <!-- Link to dashboard logic -->
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>
