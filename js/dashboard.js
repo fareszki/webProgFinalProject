@@ -80,19 +80,23 @@ async function loadPinnedNotes() {
 
 // Load quote of the day
 // Load a random motivational quote
-function loadQuote() {
-  const quotes = [
-    { text: "Success is the sum of small efforts, repeated day in and day out.", author: "Robert Collier" },
-    { text: "The future depends on what you do today.", author: "Mahatma Gandhi" },
-    { text: "Don’t watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
-    { text: "Believe you can and you're halfway there.", author: "Theodore Roosevelt" }
-  ];
-  const quote = quotes[Math.floor(Math.random() * quotes.length)];
-  if (quoteText) {
+async function loadQuote() {
+  fetch(`../quotes.json`)
+  .then(response => {
+    if (!response.ok) throw new Error("Failed to fetch quotes");
+    return response.json();
+  })
+  .then(quotes => {
+    let quote = quotes[parseInt(Math.random() * quotes.length)];
+    console.log(quote);
+    // data is an array of quote objects
     quoteText.innerHTML = `
-      <p>“${quote.text}”<br><small>– ${quote.author}</small></p>
+      <p>“${quote.q}”<br><small>– ${quote.a}</small></p>
     `;
-  }
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
 }
 
 // Load upcoming deadlines (next 7 days)
