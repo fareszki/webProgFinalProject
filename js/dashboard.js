@@ -63,14 +63,17 @@ async function loadPinnedNotes() {
     }
 
     for (const note of pinned) {
-      const div = document.createElement('div');
-      div.className = 'note pinned';
-      div.innerHTML = `
-        <strong>${note.title}</strong><br>
-        ${note.content.slice(0, 100)}...<br>
-        <small class="meta">Updated: ${new Date(note.updatedAt).toLocaleDateString()}</small>
-      `;
-      pinnedNotes.appendChild(div);
+      let pinnedHtml = '';
+      for (const note of pinnedNotesList) {
+        pinnedHtml += `
+          <div class='note pinned'>
+            <strong>${note.title}</strong><br>
+            ${note.content.slice(0, 100)}...<br>
+            <small class="meta">Updated: ${new Date(note.updatedAt).toLocaleDateString()}</small>
+          </div>
+        `;
+      }
+      pinnedNotes.innerHTML = pinnedHtml;
     }
   } catch (err) {
     console.error('Failed to load notes:', err);

@@ -13,10 +13,12 @@ async function loadNotes ()  {
     
     notesList.innerHTML = '';
     for (const note of notes) {
+      const isPinned = note.pinned ? 'checked' : '';
         notesList.innerHTML += `
           <li>
             <strong>${note.title}</strong> - ${note.content}
             <button onclick="deleteNote('${note._id}')">❌</button>
+             <input type="checkbox" onchange="pinnNote('${note._id}')" ${isPinned} />
           </li>
         `;
     }
@@ -70,6 +72,15 @@ form.addEventListener('submit', async (e) => {
   }
 });
 
+//pin note
+async function pinnNote(id) {
+  const res = await fetch(`http://localhost:3030/api/notes/${id}/pin`, {
+    method: 'PATCH'
+  });
+
+  if(res.ok) loadNotes();
+}
+
 // Delete note
 async function deleteNote(id) {
   const res = await fetch(`http://localhost:3030/api/notes/${id}`, {
@@ -78,3 +89,4 @@ async function deleteNote(id) {
 
   if (res.ok) loadNotes();
 }
+
