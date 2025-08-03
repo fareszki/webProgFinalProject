@@ -38,7 +38,7 @@ async function loadTasks() {
     for (const task of todaysTasks) {
       html += `
         <div class='task'><strong>${task.title}</strong> – ${task.description}<br>
-        <small class="meta">Due: ${new Date(task.dueDate).toLocaleDateString()}</small><div>
+        <small class="smallDate">Due: ${new Date(task.dueDate).toLocaleDateString()}</small></div>
       `;
     }
     taskList.innerHTML = html;
@@ -69,7 +69,7 @@ async function loadPinnedNotes() {
           <div class='note pinned'>
             <strong>${note.title}</strong><br>
             ${note.content.slice(0, 100)}...<br>
-            <small class="meta">Updated: ${new Date(note.updatedAt).toLocaleDateString()}</small>
+            <small class="smallDate">Updated: ${new Date(note.updatedAt).toLocaleDateString()}</small>
           </div>
         `;
       }
@@ -128,8 +128,8 @@ async function loadUpcoming() {
     let upcomingHtml = '';
     for (const task of upcoming) {
       upcomingHtml += `
-        <div class='task'><strong>${task.title}</strong> – ${task.description}<br>
-        <small class="meta">Due: ${new Date(task.dueDate).toLocaleDateString()}</small></div>
+        <div class='task' data-priority="${task.priority}"><strong>${task.title}</strong> – ${task.description}<br>
+        <small class="smallDate">Due: ${new Date(task.dueDate).toLocaleDateString()}</small></div>
       `;
     }
     upcomingList.innerHTML = upcomingHtml;

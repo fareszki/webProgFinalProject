@@ -30,17 +30,25 @@
     .section#pomodoro {
       text-align: center;
     }
+    #pomodoro-timer {
+      font-size: 2.5em;
+      font-weight: bold;
+      margin: 15px 0;
+      color: #333333;
+    }
 
     .section#quoteOfTheDay p {
       font-style: italic;
       color: #666666;
       margin-top: 10px;
+      font-weight: bold;
     }
 
     .section#quoteOfTheDay small {
       display: block;
       margin-top: 5px;
       color: #999999;
+      font-weight:normal;
     }
 
     .section#pinnedNotesSection .note {
@@ -49,16 +57,19 @@
       margin-bottom: 10px;
       border-left: 5px solid #64B5F6;
       border-radius: 6px;
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.04);
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
     }
 
-    .section#todayTasksSection .task {
+    .task {
       background-color: white;
       padding: 10px;
       margin-bottom: 10px;
-      border-left: 5px solid #81C784;
+      border-left: 5px solid #4e51fc;
       border-radius: 6px;
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.04);
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    }
+    #todayTasksSection .task {
+      border-left: 5px solid #81C784;
     }
 
     .meta {
@@ -75,10 +86,9 @@
       StudyBuddy
     </div>
     <ul class="nav-links">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Dashboard</a></li>
-      <li><a href="#">Tasks</a></li>
-      <li><a href="#">Notes</a></li>
+      <li><a href="dashboard.html">Home</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+      <li><a href="notes.html">Notes</a></li>
       <li><a href="#">About</a></li>
     </ul>
   </nav>
@@ -89,7 +99,7 @@
     <!-- left panel -->
     <div class="left-panel">
       <div class="section" id="todayTasksSection">
-        <h2>✅ Today’s Tasks</h2>
+        <h2>✅ Today's Tasks</h2>
         <div id="taskList">
           Loading... </div>
       </div>

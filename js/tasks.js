@@ -19,6 +19,7 @@ async function loadTasks() {
   for (const task of tasks) {
     const isChecked = task.isCompleted ? 'checked' : '';
     tasksList.innerHTML += `
+    <div class = "task" data-priority="${task.priority}"> 
       <li>
         <input type="checkbox" onchange="toggleTask('${task._id}')" ${isChecked} />
         <strong>${task.title}</strong> - ${task.description}
@@ -26,6 +27,7 @@ async function loadTasks() {
         <br>
         <small>Due: ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'None'} | Category: ${task.category} | Priority: ${task.priority}</small>
       </li>
+    </div>
     `;
   }
 }
