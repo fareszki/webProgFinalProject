@@ -1,47 +1,58 @@
+
+body {
+  background: linear-gradient(to bottom, #03bd66, #7a00ff);
+  background-size: 100% 300%;                 /* vertical scroll effect */
+  animation: verticalScroll 15s ease infinite;
+}
+
+/* Animation definition */
+@keyframes verticalScroll {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
 #taskForm {
-    background-color: #FFF9C4;
-    border: 2px solid #F0E68C;
+    background-color:#dbdbdb;
+    border: 10px dashed black;
     padding: 20px;
-    margin: 30px auto;
+    margin: auto;
     max-width: 600px;
     border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
   }
   
   #taskForm label {
     font-weight: bold;
     display: block;
-    margin-bottom: 5px;
     color: #333333;
+    font-size: 25px;
   }
   
   #taskForm input,
   #taskForm textarea,
   #taskForm select {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     border: 1px solid #333333;
     border-radius: 6px;
     font-size: 1em;
-    margin-bottom: 15px;
     background-color: #fff;
-    margin-right:10px;
   }
   
   #taskForm button {
-    background-color: #64B5F6;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
+    width: 90%;
+    margin-top: 20px;
+    margin-left: 27px;
   }
   
-  #taskForm button:hover {
-    background-color: #42A5F5;
-  }
-  
+ 
   #formError {
     color: red;
     margin-top: 10px;
@@ -54,8 +65,22 @@
     padding: 0;
     max-width: 900px;
     margin: 0 auto 60px;
+    background-color: transparent; /* no background by default */
+    transition: background-color 0.3s ease; /* smooth effect */
+    padding: 10px;
+    border-radius: 20px;
   }
   
+  #tasksList:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* 90% opaque white */
+  
+  }
+  
+  
+  .task input[type="checkbox"] {
+    transform: scale(1.2);
+    margin-right: 10px;
+  }
   .task {
     background-color: white;
     border-left: 6px solid #ccc;
@@ -66,39 +91,17 @@
     position: relative;
   }
   
-  .task input[type="checkbox"] {
-    transform: scale(1.2);
-    margin-right: 10px;
-  }
-  
-  .task strong {
-    font-size: 1.1em;
-    color: #333333;
-  }
-  
-  .task small {
-    display: block;
-    margin-top: 5px;
-    font-size: 0.9em;
-    color: #666666;
-  }
-  
   .task button {
-    background-color: #FF6F61;
-    color: white;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    background-color: #2c3e50;
+    color: #eee;
+    padding: 10px 20px;
     border: none;
-    padding: 6px 12px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    position: absolute;
-    right: 20px;
-    top: 20px;
-  }
-  
-  .task button:hover {
-    background-color: #e4554a;
   }
 
-  
   

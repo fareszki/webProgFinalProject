@@ -1,7 +1,5 @@
 // dashboard.js
-
 const API_BASE = 'http://localhost:3030';
-
 const taskList = document.getElementById('taskList');
 const pinnedNotes = document.getElementById('pinnedNotes');
 const quoteText = document.getElementById('quoteText');
@@ -36,9 +34,18 @@ async function loadTasks() {
     }
     let html = ''
     for (const task of todaysTasks) {
+      const isChecked = task.isCompleted ? 'checked' : '';
+      const completedClass = task.isCompleted ? 'completed' : '';
       html += `
-        <div class='task'><strong>${task.title}</strong> – ${task.description}<br>
-        <small class="smallDate">Due: ${new Date(task.dueDate).toLocaleDateString()}</small></div>
+        <div class = "task ${completedClass}" id="task-${task._id}" data-priority="${task.priority}"> 
+        <div class ="task-content">
+        <input type="checkbox" onchange="toggleTask('${task._id}')" ${isChecked} />
+        <strong>${task.title}</strong> - ${task.description}
+        <button onclick="deleteTask('${task._id}')">delete</button>
+        <br>
+        <small>Due: ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'None'} | Category: ${task.category} | Priority: ${task.priority}</small>
+      </div>
+    </div>
       `;
     }
     taskList.innerHTML = html;
@@ -127,9 +134,13 @@ async function loadUpcoming() {
 
     let upcomingHtml = '';
     for (const task of upcoming) {
+      const isChecked = task.isCompleted ? 'checked' : '';
+      const completedClass = task.isCompleted ? 'completed' : '';
       upcomingHtml += `
-        <div class='task' data-priority="${task.priority}"><strong>${task.title}</strong> – ${task.description}<br>
-        <small class="smallDate">Due: ${new Date(task.dueDate).toLocaleDateString()}</small></div>
+        <div class='task task-content ${completedClass}' data-priority="${task.priority}">
+        <strong>${task.title}</strong> - ${task.description}<br>
+        <small class="smallDate">Due: ${new Date(task.dueDate).toLocaleDateString()}</small>
+        </div>
       `;
     }
     upcomingList.innerHTML = upcomingHtml;
@@ -138,6 +149,23 @@ async function loadUpcoming() {
     console.error('Failed to load upcoming tasks:', err);
     upcomingList.innerHTML = '<p style="color:red;">Error loading deadlines</p>';
   }
+}
+
+// Delete task
+async function deleteTask(id) {
+  const res = await fetch(`http://localhost:3030/api/tasks/${id}`, {
+    method: 'DELETE'
+  });
+
+  if (res.ok) loadTasks();
+}
+
+// Toggle completed
+  async function toggleTask(id) {
+  const res = await fetch(`http://localhost:3030/api/tasks/${id}`, {
+    method: 'PATCH'
+  });
+  if (res.ok) loadTasks();
 }
 
 // Pomodoro Timer Controls

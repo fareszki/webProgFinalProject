@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Daily Study Dashboard</title>
-
-  <!-- Global styles -->
-  <link rel="stylesheet" href="../css/style.css" />
-
-  <!-- Dashboard-only styles -->
-  <style>
-    .dashboard-container {
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Daily Study Dashboard</title>
+    
+    <!-- Global styles -->
+    <link rel="stylesheet" href="../css/style.css" />
+    
+    <!-- Dashboard-only styles -->
+    <style>
+      body {
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradientBG 15s ease infinite;
+        height: 100%;
+        width: 100%;
+        padding: 0;
+      }
+      .dashboard-container {
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -39,7 +47,7 @@
 
     .section#quoteOfTheDay p {
       font-style: italic;
-      color: #666666;
+      color: black;
       margin-top: 10px;
       font-weight: bold;
     }
@@ -47,7 +55,7 @@
     .section#quoteOfTheDay small {
       display: block;
       margin-top: 5px;
-      color: #999999;
+      color:black;
       font-weight:normal;
     }
 
@@ -60,91 +68,127 @@
       box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
     }
 
-    .task {
-      background-color: white;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-left: 5px solid #4e51fc;
-      border-radius: 6px;
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-    }
     #todayTasksSection .task {
       border-left: 5px solid #81C784;
     }
-
+    
     .meta {
       color: #666666;
       font-size: 0.9em;
     }
+    
+    #addTaskBtn {
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+    }
+    .task {
+      background-color: white;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-left: 5px solid;
+      border-radius: 6px;
+      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+      position: relative;
+    }
+    .task button {
+      position: absolute;
+      top: 13px;
+      left:11.3cm;
+      background-color: #333333;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+  }
+  
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
   </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">
-      <img src="../images/logo.png" alt="StudyBuddy Logo" style="height: 40px; vertical-align: middle;">
-      StudyBuddy
-    </div>
-    <ul class="nav-links">
-      <li><a href="dashboard.html">Home</a></li>
-      <li><a href="tasks.html">Tasks</a></li>
-      <li><a href="notes.html">Notes</a></li>
-      <li><a href="#">About</a></li>
-    </ul>
-  </nav>
-
-  <h1>📚 Daily Study Dashboard</h1>
-
-  <div class="dashboard-container">
-    <!-- left panel -->
-    <div class="left-panel">
-      <div class="section" id="todayTasksSection">
-        <h2>✅ Today's Tasks</h2>
-        <div id="taskList">
-          Loading... </div>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../images/logo.png" alt="StudyBuddy Logo" style="height: 40px; vertical-align: middle;">
+        StudyBuddy
       </div>
-    
-      <div class="section" id="upcomingDeadlines">
-        <h2>📅 Upcoming Deadlines</h2>
-        <div id="upcomingList">Loading...</div>
-      </div>
-    </div>
-
-    <!-- Right: Timer, Quote, Notes -->
-    <div class="right-panel">
-      <div class="section" id="pomodoro">
-        <h2>⏳ Pomodoro Timer</h2>
-        <div id="pomodoro-timer">25:00</div>
-        <button class="pomo-btn" onclick="startPomodoro()">Start</button>
-        <button class="pomo-btn" onclick="pausePomodoro()">Pause</button>
-        <button class="pomo-btn" onclick="resetPomodoro()">Reset</button>
-      </div>
-
-      <div class="section" id="quoteOfTheDay">
-        <h2>💡 Quote of the Day</h2>
-        <div id="quoteText">Loading...</div>
-      </div>
-
-      <div class="section" id="pinnedNotesSection">
-        <h2>📌 Pinned Notes</h2>
-        <div id="pinnedNotes">Loading...</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <p>&copy; 2025 StudyBuddy. All rights reserved.</p>
-      <ul class="footer-links">
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">X</a></li>
-        <li><a href="#">Facebook</a></li>
+      <ul class="nav-links">
+        <li><a href="dashboard.html">Home</a></li>
+        <li><a href="tasks.html">Tasks</a></li>
+        <li><a href="notes.html">Notes</a></li>
+        <li><a href="#">About</a></li>
       </ul>
+    </nav>
+
+    <h1>📚 Daily Study Dashboard</h1>
+
+    <div class="dashboard-container">
+      <!-- left panel -->
+      <div class="left-panel">
+        <div class="section" id="todayTasksSection">
+          <h2>✅ Today's Tasks</h2>
+          <div id="taskList">Loading... </div>
+          <a href="tasks.html">
+            <button id="addTaskBtn">Add Task</button>
+          </a>
+         
+        </div>
+        <div class="section" id="upcomingDeadlines">
+          <h2>📅 Upcoming Deadlines</h2>
+          <div id="upcomingList">Loading...</div>
+        </div>
+      </div>
+
+      <!-- Right: Timer, Quote, Notes -->
+      <div class="right-panel">
+        <div class="section" id="pomodoro">
+          <h2>⏳ Pomodoro Timer</h2>
+          <div id="pomodoro-timer">25:00</div>
+          <button class="pomo-btn" onclick="startPomodoro()">Start</button>
+          <button class="pomo-btn" onclick="pausePomodoro()">Pause</button>
+          <button class="pomo-btn" onclick="resetPomodoro()">Reset</button>
+        </div>
+
+        <div class="section" id="quoteOfTheDay">
+          <h2>💡 Quote of the Day</h2>
+          <div id="quoteText">Loading...</div>
+        </div>
+
+        <div class="section" id="pinnedNotesSection">
+          <h2>📌 Pinned Notes</h2>
+          <div id="pinnedNotes">Loading...</div>
+        </div>
+      </div>
     </div>
-  </footer>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; 2025 StudyBuddy. All rights reserved.</p>
+        <ul class="footer-links">
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">X</a></li>
+          <li><a href="#">Facebook</a></li>
+        </ul>
+      </div>
+    </footer>
+
 
   <!-- JS logic -->
   <script src="../js/dashboard.js"></script>
 </body>
+
 </html>

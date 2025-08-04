@@ -16,17 +16,20 @@ async function loadTasks() {
   const tasks = await res.json();
 
   tasksList.innerHTML = '';
+
   for (const task of tasks) {
     const isChecked = task.isCompleted ? 'checked' : '';
+    const completedClass = task.isCompleted ? 'completed' : '';
+
     tasksList.innerHTML += `
-    <div class = "task" data-priority="${task.priority}"> 
-      <li>
+    <div class = "task ${completedClass}" id="task-${task._id}" data-priority="${task.priority}"> 
+      <div class ="task-content">
         <input type="checkbox" onchange="toggleTask('${task._id}')" ${isChecked} />
         <strong>${task.title}</strong> - ${task.description}
         <button onclick="deleteTask('${task._id}')">delete</button>
         <br>
         <small>Due: ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'None'} | Category: ${task.category} | Priority: ${task.priority}</small>
-      </li>
+      </div>
     </div>
     `;
   }
@@ -64,7 +67,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 // Delete task
-async function deleteTask(id) {
+  async function deleteTask(id) {
   const res = await fetch(`http://localhost:3030/api/tasks/${id}`, {
     method: 'DELETE'
   });
@@ -73,10 +76,12 @@ async function deleteTask(id) {
 }
 
 // Toggle completed
-async function toggleTask(id) {
+  async function toggleTask(id) {
   const res = await fetch(`http://localhost:3030/api/tasks/${id}`, {
     method: 'PATCH'
   });
-
   if (res.ok) loadTasks();
 }
+
+
+
