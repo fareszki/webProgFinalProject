@@ -15,34 +15,20 @@ async function loadNotes ()  {
     for (const note of notes) {
       const isPinned = note.pinned ? 'checked' : '';
         notesList.innerHTML += `
-          <li>
-            <strong>${note.title}</strong> - ${note.content}
-            <button onclick="deleteNote('${note._id}')">❌</button>
-             <input type="checkbox" onchange="pinnNote('${note._id}')" ${isPinned} />
-          </li>
-        `;
+          <li class="note-card">
+            <div class="note-header">
+              <span>${note.title}</span>
+              <div class="note-controls">
+                <label class="pin-label">
+                  📌
+                  <input type="checkbox" onchange="pinnNote('${note._id}')" ${isPinned} />
+                </label>
+                <button class="delete-btn" onclick="deleteNote('${note._id}')">delete</button>
+              </div>
+            </div>
+            <div class="note-content">${note.content}</div>
+          </li>`;
     }
-
-  //  fetch('http://localhost:3030/api/notes')
-  // .then(res => {
-  //   if (!res.ok) throw new Error("Failed to fetch notes");
-  //   return res.json();
-  // })
-  // .then(notes => {
-  //   notesList.innerHTML = '';
-  //   for (const note of notes) {
-  //     notesList.innerHTML += `
-  //       <li>
-  //         <strong>${note.title}</strong> - ${note.content}
-  //         <button onclick="deleteNote('${note._id}')">❌</button>
-  //       </li>
-  //     `;
-  //   }
-  // })
-  // .catch(err => {
-  //   notesList.innerHTML = `<li style="color:red;">${err.message}</li>`;
-  // });
-
 };
 
 // Add note

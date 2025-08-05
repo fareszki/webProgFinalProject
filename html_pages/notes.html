@@ -3,33 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>StudyBuddy – Notes</title>
+  <title>StudyBuddy - Notes</title>
   <!-- Link to external CSS -->
-  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/general.css" />
+  <link rel="stylesheet" href="../css/notes.css" />
 </head>
 <body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">
+      <img src="../images/appLogo.png" alt="StudyBuddy Logo">
+    </div>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Home</a></li>
+      <li><a href="tasks.html">Tasks</a></li>
+      <li><a href="notes.html">Notes</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
 
   <h1>📒 My Notes</h1>
 
-  <!-- Note Form -->
-  <form id="noteForm">
-    <label for="titleInput">Note Title:</label><br>
-    <input type="text" id="titleInput" placeholder="Note Title" required /><br><br>
+  <!-- Main Section -->
+  <div class="notes-container">
+    <!-- Note Form -->
+    <form id="noteForm">
+      <label for="titleInput">Note Title:</label>
+      <input type="text" id="titleInput" placeholder="Note Title" required />
 
-    <label for="contentInput">Note Content:</label><br>
-    <textarea id="contentInput" placeholder="Write your note..." required></textarea><br><br>
+      <label for="contentInput">Note Content:</label>
+      <textarea id="contentInput" placeholder="Write your note..." required></textarea>
 
-    <button type="submit">Add Note</button>
-    <p id="formError"></p>
-  </form>
+      <button type="submit">Add Note</button>
+      <p id="formError"></p>
+    </form>
 
-  <!-- Notes Display Section -->
-  <h2>📝 All Notes</h2>
-  <ul id="notesList">
-    <!-- Notes will be added here dynamically -->
-  </ul>
+    <!-- Notes Grid -->
+    <ul id="notesList">
+      <!-- Note cards will be inserted here via JS -->
+    </ul>
+  </div>
 
-  <!-- Link to external JavaScript -->
+  <!-- JavaScript -->
   <script src="../js/notes.js"></script>
-</body>
+</body></body>
 </html>

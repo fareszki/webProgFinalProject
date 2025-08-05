@@ -139,8 +139,7 @@ async function loadUpcoming() {
       upcomingHtml += `
         <div class='task task-content ${completedClass}' data-priority="${task.priority}">
         <strong>${task.title}</strong> - ${task.description}<br>
-        <small class="smallDate">Due: ${new Date(task.dueDate).toLocaleDateString()}</small>
-        </div>
+        <small>Due: ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'None'} | Category: ${task.category} | Priority: ${task.priority}</small>        </div>
       `;
     }
     upcomingList.innerHTML = upcomingHtml;

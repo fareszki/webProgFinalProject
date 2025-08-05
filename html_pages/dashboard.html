@@ -6,124 +6,16 @@
     <title>Daily Study Dashboard</title>
     
     <!-- Global styles -->
-    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/general.css" />
+    <link rel="stylesheet" href="../css/dashbaord.css" />
     
     <!-- Dashboard-only styles -->
-    <style>
-      body {
-        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-        height: 100%;
-        width: 100%;
-        padding: 0;
-      }
-      .dashboard-container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .left-panel, .right-panel {
-      flex: 1;
-    }
-
-    .right-panel .section {
-      margin-bottom: 20px;
-    }
-
-    .section#pomodoro {
-      text-align: center;
-    }
-    #pomodoro-timer {
-      font-size: 2.5em;
-      font-weight: bold;
-      margin: 15px 0;
-      color: #333333;
-    }
-
-    .section#quoteOfTheDay p {
-      font-style: italic;
-      color: black;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    .section#quoteOfTheDay small {
-      display: block;
-      margin-top: 5px;
-      color:black;
-      font-weight:normal;
-    }
-
-    .section#pinnedNotesSection .note {
-      background-color: white;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-left: 5px solid #64B5F6;
-      border-radius: 6px;
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-    }
-
-    #todayTasksSection .task {
-      border-left: 5px solid #81C784;
-    }
-    
-    .meta {
-      color: #666666;
-      font-size: 0.9em;
-    }
-    
-    #addTaskBtn {
-      margin-top: 10px;
-      width: 100%;
-      padding: 10px;
-    }
-    .task {
-      background-color: white;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-left: 5px solid;
-      border-radius: 6px;
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-      position: relative;
-    }
-    .task button {
-      position: absolute;
-      top: 13px;
-      left:11.3cm;
-      background-color: #333333;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-  }
-  
-@keyframes gradientBG {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-  </style>
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
       <div class="logo">
-        <img src="../images/logo.png" alt="StudyBuddy Logo" style="height: 40px; vertical-align: middle;">
-        StudyBuddy
+        <img src="../images/appLogo.png">
       </div>
       <ul class="nav-links">
         <li><a href="dashboard.html">Home</a></li>
@@ -132,6 +24,7 @@
         <li><a href="#">About</a></li>
       </ul>
     </nav>
+  
 
     <h1>📚 Daily Study Dashboard</h1>
 

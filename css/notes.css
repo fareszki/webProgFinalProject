@@ -1,0 +1,154 @@
+
+
+  
+body {
+background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+background-size: 400% 400%;
+animation: gradientBG 15s ease infinite;
+height: 100%;
+width: 100%;
+padding: 0;
+}
+.notes-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 0 20px;
+    flex-wrap: wrap;
+}
+
+  #noteForm {
+    background-color:#dbdbdb;
+    flex: 1 1 300px;
+    max-width: 400px;
+    border: 1px solid #b2ebf2;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.1);
+    border: 7px dashed black;
+  }
+
+  #noteForm label {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+  }
+
+  #noteForm input[type="text"],
+  #noteForm textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: #fff;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+
+  #noteForm textarea {
+    min-height: 120px;
+  }
+
+  #noteForm button {
+    font-weight: bold;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+  }
+
+  #formError {
+    color: red;
+    margin-top: 10px;
+    font-size: 0.9em;
+    text-align: center;
+  }
+
+  #notesList {
+    flex: 3 1 800px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 0;
+    list-style: none;
+  }
+
+  .note-card {
+    background: #FBF7F7;
+    background: linear-gradient(0deg,rgba(251, 247, 247, 1) 33%, rgba(222, 222, 222, 1) 91%);
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
+    padding: 15px;
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .note-card:hover {
+    transform: scale(1.02);
+  }
+
+  .note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #444;
+    border-bottom: 1px dashed #444;
+    padding-bottom: 5px;
+  }
+
+  .note-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pin-label {
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+    cursor: pointer;
+  }
+
+  .pin-label input[type="checkbox"] {
+    margin-left: 5px;
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+
+
+
+  .delete-btn:hover {
+    background-color: #c0392b;
+  }
+  
+  .delete-btn:active {
+    background-color: #e74c3c;
+  }
+
+  .note-content {
+    font-size: 0.95em;
+    color: #333;
+    white-space: pre-wrap;
+  }
+
+    #notesList {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    #noteForm textarea {
+        min-height: 400px;   /* makes it taller */
+        width: 100%;         /* full width of the form */
+        resize: none;
+      }
+
