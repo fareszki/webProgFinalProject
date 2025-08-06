@@ -1,95 +1,107 @@
+/* ========== dashboard.css ========== */
 
-      body {
-        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-        background-size: 400% 400%;
-        animation: gradientBG 15s ease infinite;
-        height: 100%;
-        width: 100%;
-        padding: 0;
-      }
-      .dashboard-container {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 30px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+/* === Page Background === */
+body {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
 
-    .left-panel, .right-panel {
-      flex: 1;
-    }
+/* === Layout Containers === */
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-    .right-panel .section {
-      margin-bottom: 20px;
-    }
+.left-panel, .right-panel {
+  flex: 1;
+}
 
-    .section#pomodoro {
-      text-align: center;
-    }
-    #pomodoro-timer {
-      font-size: 2.5em;
-      font-weight: bold;
-      margin: 15px 0;
-      color: #333333;
-    }
+.right-panel .section {
+  margin-bottom: 20px;
+}
 
-    .section#quoteOfTheDay p {
-      font-style: italic;
-      color: black;
-      margin-top: 10px;
-      font-weight: bold;
-    }
+/* === Pomodoro Section === */
+.section#pomodoro {
+  text-align: center;
+}
 
-    .section#quoteOfTheDay small {
-      display: block;
-      margin-top: 5px;
-      color:black;
-      font-weight:normal;
-    }
+#pomodoro-timer {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin: 15px 0;
+  color: #333333;
+}
 
-    .section#pinnedNotesSection .note {
-      background-color: white;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-left: 5px solid #64B5F6;
-      border-radius: 6px;
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-    }
-    
-    .meta {
-      color: #666666;
-      font-size: 0.9em;
-    }
-    
-    #addTaskBtn {
-      margin-top: 10px;
-      width: 100%;
-      padding: 10px;
-    }
-    .task {
-      background-color: white;
-      padding: 10px;
-      margin-bottom: 10px;
-      border-left: 5px solid;
-      border-radius: 6px;
-      box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-      position: relative;
-    }
-    .task button {
-      position: absolute;
-      top: 13px;
-      left:11.3cm;
-      background-color: #333333;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-  }
-  
+/* === Quote Section === */
+.section#quoteOfTheDay p {
+  font-style: italic;
+  color: black;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.section#quoteOfTheDay small {
+  display: block;
+  margin-top: 5px;
+  color: black;
+  font-weight: normal;
+}
+
+/* === Pinned Notes Section === */
+.section#pinnedNotesSection .note {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-left: 5px solid #64B5F6;
+  border-radius: 6px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.meta {
+  color: #666666;
+  font-size: 0.9em;
+}
+
+/* === Task Elements === */
+#addTaskBtn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+}
+
+.task {
+  background-color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-left: 5px solid;
+  border-radius: 6px;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.task button {
+  position: absolute;
+  top: 13px;
+  left: 11.3cm;
+  background-color: #333333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+/* === Gradient Animation === */
 @keyframes gradientBG {
   0% {
     background-position: 0% 50%;

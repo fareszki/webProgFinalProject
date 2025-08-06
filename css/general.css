@@ -1,4 +1,15 @@
+/* ========== general.css (Base Styles) ========== */
+
+/* === Reset & Global Defaults === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === Font Imports === */
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
 @font-face {
   font-family: 'crazyFont';
   src: url('../fonts/headersFont.ttf') format('truetype');
@@ -6,18 +17,44 @@
   font-style: normal;
 }
 
+/* === Root Variables (for easy theming) === */
+:root {
+  --primary-color: #333333;
+  --accent-color: #42A5F5;
+  --light-bg: #dbdbdb;
+  --danger-color: #e74c3c;
+  --danger-dark: #c0392b;
+  --font-heading: 'Archivo Black', sans-serif;
+  --font-logo: 'crazyFont', sans-serif;
+}
 
-/* Base layout */
+/* === Base Body === */
 body {
-  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  color: #333333;
-  margin: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  color: var(--primary-color);
+  background-color: #ffffff;
   padding: 0 20px 40px;
 }
 
-/* Navbar */
+/* === Typography === */
+h1 {
+  font-family: var(--font-logo);
+  text-align: center;
+  margin: 30px 0;
+  font-weight: bold;
+  font-size: 70px;
+  color: white;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  color: var(--primary-color);
+  margin-bottom: 10px;
+}
+
+/* === Navbar === */
 .navbar {
-  background: linear-gradient(90deg,rgba(219, 219, 219, 1) 0%, rgba(255, 250, 250, 1) 50%, rgba(219, 219, 219, 1) 100%);
+  background: linear-gradient(90deg, #dbdbdb 0%, #fffafa 50%, #dbdbdb 100%);
   border-bottom: 2px solid #dbdbdb;
   display: flex;
   align-items: center;
@@ -25,17 +62,17 @@ body {
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
   margin: 30px 15%;
   border-radius: 20px;
-
 }
 
 .logo {
   margin-left: 15%;
   margin-right: 15%;
 }
+
 .logo img {
   margin-top: 5px;
   width: 150px;
-  height: auto; /* maintains aspect ratio */
+  height: auto;
 }
 
 .nav-links {
@@ -45,53 +82,33 @@ body {
 }
 
 .nav-links li a {
-  color: #333333;
+  color: var(--primary-color);
   text-decoration: none;
-  font-weight: 500;
-  padding:12px 23px;
   font-weight: bold;
-  font-family:"crazyFont" ;
+  padding: 12px 23px;
+  font-family: var(--font-logo);
 }
 
 .nav-links li a:hover {
-  background-color: #333333;
+  background-color: var(--primary-color);
   border-radius: 3px;
   color: white;
 }
 
-/* Headings */
-h1 {
- font-family: 'crazyFont', sans-serif;
-  text-align: center;
-  margin: 30px 0;
-  font-weight: bold;
-  font-size: 70px;
-  color: white;
-
-}
-
-h2 {
-  color: #333333;
-  margin-bottom: 10px;
-  font-family: 'Archivo Black', sans-serif;
-
-}
-
-/* Sections (shared across pages) */
+/* === Section Box === */
 .section {
   border: 2px solid #dbdbdb;
   border-radius: 12px;
   padding: 20px;
   margin: 20px auto;
-  box-shadow: 2px 2px 10px (0, 0, 0, 0.4);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
   max-width: 900px;
-  background: #dbdbdb;
-  background: linear-gradient(90deg,rgba(219, 219, 219, 1) 0%, rgba(255, 250, 250, 1) 50%, rgba(219, 219, 219, 1) 100%);
+  background: linear-gradient(90deg, #dbdbdb 0%, #fffafa 50%, #dbdbdb 100%);
 }
 
-/* Shared button style (Pomodoro, reuse elsewhere) */
+/* === Buttons === */
 button {
-  background-color: #333333;
+  background-color: var(--primary-color);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -103,10 +120,10 @@ button {
 }
 
 button:hover {
-  background-color: #42A5F5;
+  background-color: var(--accent-color);
 }
 
-/* Footer */
+/* === Footer === */
 .footer {
   padding: 20px;
   margin-top: 40px;
@@ -129,50 +146,94 @@ button:hover {
 }
 
 .footer-links li a {
-  color: #333333;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
 .footer-links li a:hover {
   text-decoration: underline;
 }
-  /* === Priority Colors === */
-  .task[data-priority="High"] {
-    border-left-color: #FF6F61; /* Red */
-  }
-  
-  .task[data-priority="Medium"] {
-    border-left-color: #FFA726; /* Orange */
-  }
-  
-  .task[data-priority="Low"] {
-    border-left-color: #81C784; /* Green */
-  }
- 
-  .task strong {
-    font-size: 1.1em;
-    color: #333333;
-  }
-  
-  .task small {
-    display: block;
-    margin-top: 5px;
-    font-size: 0.9em;
-    color: #666666;
-  }
 
-  .task button:hover {
-    background-color: #c0392b;
-  }
-  
-  .task button:active {
-    background-color: #e74c3c;
-  }
+/* === Links (global) === */
+a {
+  color: #0645AD;
+  text-decoration: none;
+}
 
-  .task.completed .task-content {
-    background-color: #d4edda;  /* light green */
-    color: #155724;             /* dark green text */
-    text-decoration: line-through;
-    opacity: 0.7;
-    transition: background-color 0.3s ease, opacity 0.3s ease;
-  }
+a:hover {
+  text-decoration: underline;
+}
+
+/* === Form Defaults === */
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: 1em;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+/* === Task Styles (Common Base) === */
+.task[data-priority="High"] {
+  border-left-color: #FF6F61;
+}
+
+.task[data-priority="Medium"] {
+  border-left-color: #FFA726;
+}
+
+.task[data-priority="Low"] {
+  border-left-color: #81C784;
+}
+
+.task strong {
+  font-size: 1.1em;
+  color: var(--primary-color);
+}
+
+.task small {
+  display: block;
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #666666;
+}
+
+.task button:hover {
+  background-color: var(--danger-dark);
+}
+
+.task button:active {
+  background-color: var(--danger-color);
+}
+
+.task.completed .task-content {
+  background-color: #d4edda;
+  color: #155724;
+  text-decoration: line-through;
+  opacity: 0.7;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+/* === Utility Classes === */
+.text-center {
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.rounded {
+  border-radius: 8px;
+}

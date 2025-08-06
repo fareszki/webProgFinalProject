@@ -1,11 +1,13 @@
+/* ========== tasks.css ========== */
 
+/* === Page Background === */
 body {
   background: linear-gradient(to bottom, #03bd66, #7a00ff);
-  background-size: 100% 300%;                 /* vertical scroll effect */
+  background-size: 100% 300%;
   animation: verticalScroll 15s ease infinite;
 }
 
-/* Animation definition */
+/* === Background Animation === */
 @keyframes verticalScroll {
   0% {
     background-position: 0% 0%;
@@ -18,89 +20,86 @@ body {
   }
 }
 
+/* === Task Form === */
 #taskForm {
-    background-color:#dbdbdb;
-    border: 10px dashed black;
-    padding: 20px;
-    margin: auto;
-    max-width: 600px;
-    border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
-  }
-  
-  #taskForm label {
-    font-weight: bold;
-    display: block;
-    color: #333333;
-    font-size: 25px;
-  }
-  
-  #taskForm input,
-  #taskForm textarea,
-  #taskForm select {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #333333;
-    border-radius: 6px;
-    font-size: 1em;
-    background-color: #fff;
-  }
-  
-  #taskForm button {
-    width: 90%;
-    margin-top: 20px;
-    margin-left: 27px;
-  }
-  
- 
-  #formError {
-    color: red;
-    margin-top: 10px;
-  }
-  
-  
-  /* === Tasks List === */
-  #tasksList {
-    list-style: none;
-    padding: 0;
-    max-width: 900px;
-    margin: 0 auto 60px;
-    background-color: transparent; /* no background by default */
-    transition: background-color 0.3s ease; /* smooth effect */
-    padding: 10px;
-    border-radius: 20px;
-  }
-  
-  #tasksList:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* 90% opaque white */
-  
-  }
-  
-  
-  .task input[type="checkbox"] {
-    transform: scale(1.2);
-    margin-right: 10px;
-  }
-  .task {
-    background-color: white;
-    border-left: 6px solid #ccc;
-    padding: 15px 20px;
-    margin-bottom: 15px;
-    border-radius: 10px;
-    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.05);
-    position: relative;
-  }
-  
-  .task button {
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    color: #eee;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-  }
+  background-color: #dbdbdb;
+  border: 10px dashed black;
+  padding: 20px;
+  margin: auto;
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
+}
 
-  
+#taskForm label {
+  font-weight: bold;
+  display: block;
+  color: #333333;
+  font-size: 25px;
+}
+
+#taskForm input,
+#taskForm textarea,
+#taskForm select {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #333333;
+  border-radius: 6px;
+  font-size: 1em;
+  background-color: #fff;
+}
+
+#taskForm button {
+  width: 90%;
+  margin-top: 20px;
+  margin-left: 27px;
+}
+
+/* === Form Error === */
+#formError {
+  color: red;
+  margin-top: 10px;
+}
+
+/* === Task List === */
+#tasksList {
+  list-style: none;
+  padding: 10px;
+  max-width: 900px;
+  margin: 0 auto 60px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  border-radius: 20px;
+}
+
+#tasksList:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* === Individual Task === */
+.task {
+  background-color: white;
+  border-left: 6px solid #ccc;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.task input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 10px;
+}
+
+.task button {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  color: #eee;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}

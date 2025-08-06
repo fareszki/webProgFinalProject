@@ -16,7 +16,7 @@ app.listen(PORT, () => console.log("server is running"));
 //connect to mongoDB
 mongoose.connect('mongodb://127.0.0.1:27017/studybuddy')
 .then(() => console.log('mongo connected'))
-.catch(() => console.log('mongodb connection error', err));
+.catch((err) => console.log('mongodb connection error', err));
 
 //task schema
 const taskSchema = new mongoose.Schema({
@@ -200,7 +200,3 @@ app.delete("/api/notes/:id", async (req, res) => {
       res.status(500).json({ msg: "Error deleting note" });
     }
 });
-
-
-
-  
