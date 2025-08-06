@@ -43,7 +43,7 @@ h1 {
   margin: 30px 0;
   font-weight: bold;
   font-size: 70px;
-  color: white;
+  color: black;
 }
 
 h2 {
@@ -103,7 +103,8 @@ h2 {
   margin: 20px auto;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
   max-width: 900px;
-  background: linear-gradient(90deg, #dbdbdb 0%, #fffafa 50%, #dbdbdb 100%);
+  /* background: linear-gradient(90deg, #dbdbdb 0%, #fffafa 50%, #dbdbdb 100%); */
+  background: #eeecec;
 }
 
 /* === Buttons === */
@@ -121,6 +122,9 @@ button {
 
 button:hover {
   background-color: var(--accent-color);
+}
+.delete-btn:hover {
+  background-color: #c0392b;
 }
 
 /* === Footer === */

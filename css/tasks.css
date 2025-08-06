@@ -1,12 +1,20 @@
 /* ========== tasks.css ========== */
 
 /* === Page Background === */
-body {
+/* body {
   background: linear-gradient(to bottom, #03bd66, #7a00ff);
   background-size: 100% 300%;
   animation: verticalScroll 15s ease infinite;
-}
-
+} */
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/papers/47.jpg'); /* Replace with your image path */
+  background-size: cover;        /* Make image cover the whole screen */
+  background-position: center;   /* Center the image */
+  background-repeat: no-repeat;  /* Do not repeat the image */
+  height: 100%;                 /* Full viewport height */
+} 
 /* === Background Animation === */
 @keyframes verticalScroll {
   0% {
