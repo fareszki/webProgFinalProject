@@ -58,30 +58,35 @@ async function loadTasks() {
 // Load pinned notes
 async function loadPinnedNotes() {
   try {
-    const res = await fetch(`${API_BASE}/api/notes`);
+    const res = await fetch(`${API_BASE}/api/notes/pinned`);
     const notes = await res.json();
 
     pinnedNotes.innerHTML = '';
-    const pinned = notes.filter(n => n.isPinned).slice(0, 3);
 
-    if (pinned.length === 0) {
+    if (notes.length === 0) {
       pinnedNotes.innerHTML = '<p>No pinned notes 📝</p>';
       return;
     }
 
-    for (const note of pinned) {
-      let pinnedHtml = '';
-      for (const note of pinnedNotesList) {
-        pinnedHtml += `
-          <div class='note pinned'>
-            <strong>${note.title}</strong><br>
-            ${note.content.slice(0, 100)}...<br>
-            <small class="smallDate">Updated: ${new Date(note.updatedAt).toLocaleDateString()}</small>
+   
+    let pinnedHtml = '';
+    for (const note of notes) {
+      let addDotes = note.content.length > 139? '...' : '';
+      pinnedHtml += `
+          <div class='note'>
+            <div class="note-header">
+              <strong>${note.title}</strong><br>
+              ${note.content.slice(0, 140)}${addDotes}<br>
+              <small class="smallDate">Created: ${new Date(note.createdAt).toLocaleDateString()}</small>
+            </div>
+              <div class ="button-container">
+              <button class="delete-btn"onclick="pinnNote('${note._id}')">Unpin</button>
+              </div>
           </div>
-        `;
-      }
-      pinnedNotes.innerHTML = pinnedHtml;
+      `;
     }
+    pinnedNotes.innerHTML = pinnedHtml;
+
   } catch (err) {
     console.error('Failed to load notes:', err);
     pinnedNotes.innerHTML = '<p style="color:red;">Error loading notes</p>';
@@ -101,7 +106,7 @@ function loadQuote() {
     console.log(quote);
     // data is an array of quote objects
     quoteText.innerHTML = `
-      <p>“${quote.q}”<br><small>– ${quote.a}</small></p>
+      <p>“${quote.q}”<br><small>-${quote.a}</small></p>
     `;
   })
   .catch(error => {
@@ -199,6 +204,14 @@ function resetPomodoro() {
   pomoTime = 25 * 60;
   pomoRunning = false;
   updatePomodoroDisplay();
+}
+
+async function pinnNote(id) {
+  const res = await fetch(`http://localhost:3030/api/notes/${id}/pin`, {
+    method: 'PATCH'
+  });
+
+  if(res.ok) loadPinnedNotes();
 }
 
 updatePomodoroDisplay();

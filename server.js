@@ -213,7 +213,7 @@ app.get('/api/notes/recent', async (req, res) => {
 //get pinnned notes
 app.get('/api/notes/pinned', async (req, res) => {
   try {
-    const pinnedNotes = await Note.find({ pinned: true }).sort({ updatedAt: -1 }).limit(5);
+    const pinnedNotes = await Note.find({ pinned: true }).sort({ updatedAt: -1 });
     res.json(pinnedNotes);
   } catch (err) {
     res.status(500).json({ msg: "Failed to fetch pinned notes." });

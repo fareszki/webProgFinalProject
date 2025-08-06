@@ -1,15 +1,26 @@
 /* ========== dashboard.css ========== */
 
 /* === Page Background === */
-body {
+/* body {
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
   height: 100%;
   width: 100%;
   padding: 0;
+} */
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/papers/26.jpg'); /* Replace with your image path */
+  background-size: cover;        /* Make image cover the whole screen */
+  background-position: center;   /* Center the image */
+  background-repeat: no-repeat;  /* Do not repeat the image */
+  height: 100%;                 /* Full viewport height */
+} 
+h1{ 
+  color: black;
 }
-
 /* === Layout Containers === */
 .dashboard-container {
   display: flex;
@@ -63,7 +74,11 @@ body {
   border-left: 5px solid #64B5F6;
   border-radius: 6px;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: space-between;
 }
+
+
 
 .meta {
   color: #666666;

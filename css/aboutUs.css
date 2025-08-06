@@ -1,0 +1,122 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('../images/papers/49.jpg'); /* Replace with your image path */
+  background-size: cover;        /* Make image cover the whole screen */
+  background-position: center;   /* Center the image */
+  background-repeat: no-repeat;  /* Do not repeat the image */
+  height: 100%;                 /* Full viewport height */
+} 
+.about-section {
+  margin-top: 20px;
+  text-align: center;
+  }
+  
+  .about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Intro Text */
+  .about-text h1 {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+  }
+  
+  .about-text p {
+    font-size: 1.1em;
+    color: #555;
+    max-width: 800px;
+    margin: 0 auto ;
+  }
+  
+  /* Mission, Vision, Values */
+  .about-blocks {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 60px;
+  }
+  
+  .about-block {
+    flex: 1 1 300px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
+    text-align: left;
+    transition: background-color 0.3s ease;
+  }
+  .about-block:hover {
+    background-color: #e6f2ff; 
+  }
+  
+  .about-block h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #222;
+  }
+  
+  .about-block p,
+  .about-block ul {
+    color: #555;
+    font-size: 0.98em;
+    line-height: 1.6;
+  }
+  
+  .about-block ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .about-block ul li {
+    margin-bottom: 10px;
+  }
+  
+  /* Team Section */
+  .team-cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  
+  .team-member {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
+    max-width: 300px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-5px);
+    background-color: #e6f2ff;
+  }
+  
+  .team-member img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .team-member h2 {
+    font-size: 1.5em;
+    color: #222;
+    margin-bottom: 10px;
+  }
+  
+  .team-member p {
+    font-size: 0.95em;
+    color: #666;
+    line-height: 1.6;
+  }
+  
