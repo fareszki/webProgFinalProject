@@ -50,10 +50,69 @@ const Task = mongoose.model('Task', taskSchema);
 
 //Routes 
 //get all tasks
-app.get("/api/tasks", async (req,res) => {
-    const tasks = await Task.find({});
+// app.get("/api/tasks", async (req,res) => {
+//     const tasks = await Task.find({});
+    
+//     res.json(tasks);
+// })
+
+
+// Get all or filtered tasks
+app.get("/api/tasks", async (req, res) => {
+  try {
+    const filter = {};
+
+    // Filter by priority
+    if (req.query.priority) {
+      filter.priority = req.query.priority;
+    }
+
+    // Filter by category
+    if (req.query.category) {
+      filter.category = req.query.category;
+    }
+
+    // Filter by overdue
+    if (req.query.overdue) {
+      filter.dueDate = {
+        $lt: new Date(),
+      };
+      filter.isCompleted = false;
+    }
+
+    // Filter by exact due date (YYYY-MM-DD)
+    if (req.query.dueDate) {
+      filter.dueDate = req.query.dueDate;
+    }
+
+    // Filter by date range (overrides dueDate if both provided)
+    if (req.query.startDate && req.query.endDate) {
+      filter.dueDate = {
+        $gte: new Date(req.query.startDate),
+        $lte: new Date(req.query.endDate),
+      };
+    }
+    const tasks = await Task.find(filter).sort({ dueDate: -1 });    
+    
     res.json(tasks);
-})
+  } catch (error) {
+    console.error("Failed to fetch tasks:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+//get unique categories
+app.get("/api/tasks/categories", async (req, res) => {
+  try {
+    const categories = await Task.distinct("category");
+    res.json(categories);
+  } catch (err) {
+    console.error("Error fetching categories:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+
 // //get today tasks
 // app.get('/api/tasks/today', async (req, res) => {
 //   const today = new Date();
@@ -112,6 +171,8 @@ app.patch('/api/tasks/:id', async (req, res) => {
     await task.save();
     res.json(task);
 });
+
+
 //delete task
 app.delete('/api/tasks/:id', async (req, res) => {
     try {

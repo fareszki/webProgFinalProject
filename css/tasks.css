@@ -20,12 +20,18 @@ body {
   }
 }
 
+ /* === Task Section === */
+ #task-section {
+  display: flex;
+}
+
 /* === Task Form === */
 #taskForm {
+  flex: 1;
   background-color: #dbdbdb;
   border: 10px dashed black;
   padding: 20px;
-  margin: auto;
+  margin-left: 10%;
   max-width: 600px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
@@ -63,10 +69,11 @@ body {
 
 /* === Task List === */
 #tasksList {
+  flex: 2;
   list-style: none;
   padding: 10px;
   max-width: 900px;
-  margin: 0 auto 60px;
+  margin-left : 70px;
   background-color: transparent;
   transition: background-color 0.3s ease;
   border-radius: 20px;
@@ -74,6 +81,36 @@ body {
 
 #tasksList:hover {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* === Filter Bar === */
+
+#filter-bar{
+  font-size: 1.25em;
+  margin: 70px;
+}
+
+#filter-bar table{
+  /* border:1px solid black; */
+  margin: auto;
+  background-color: #dbdbdb;
+  border-radius: 20px;
+  
+}
+
+#filter-bar table, td, th{
+  /* border:1px solid black; */
+}
+
+/* === Filtered Tasks === */
+#filtered-tasks {
+  list-style: none;
+  padding: 10px;
+  max-width: 900px;
+  margin: auto;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  border-radius: 20px;
 }
 
 /* === Individual Task === */

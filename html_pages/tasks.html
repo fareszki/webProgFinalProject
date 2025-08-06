@@ -11,7 +11,7 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">
-      <img src="../images/appLogo.png">
+      <img src="../images/appLogo.png" alt="StudyBuddy Logo">
     </div>
     <ul class="nav-links">
       <li><a href="dashboard.html">Home</a></li>
@@ -22,46 +22,96 @@
   </nav>
 
   <h1>📋 My Tasks</h1>
+    <div id="filter-bar">
+    <table cellspacing="30" >
+      <tr>
+        <td>
+          <img src="../images/filter.jpg" alt="filter icon" width="40px">
+        </td>
+        <td>
+          <span>Filter Options:</span>
+        </td>
+        <td>
+          <select id="filterCategory">
+          <!-- <option value="">All Categories</option>
+          <option value="cdv">cdv</option> -->
+          </select>
+        </td>
+        <td> Due Date:
+          <input type="date" id="filterDueDate">
+        </td>
+        <td>
+          <select id="filterPriority">
+            <option value="">Priority</option>
+            <option value="Low">Low</option>
+            <option value="Medium">Medium</option>
+            <option value="High">High</option>
+          </select>
+        </td>
+        <td>
+          Overdue <input type="checkbox" id="filterOverdue">
+        </td>
+        <td>
+          Between
+          <input type="date" id="startDate">
+          and
+          <input type="date" id="endDate">
+        </td>
+        <td>
+          <button id="filterBtn">FILTER</button>
+          <button id="clearBtn">Clear</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+ <!-- upper part: form and all tasks -->
+  <div id="task-section">
+    <!-- Task Form -->
+    <form id="taskForm">
+      <label for="titleInput">Task Title:</label><br>
+      <input type="text" id="titleInput" placeholder="Task title" required /><br><br>
 
-  <!-- Task Form -->
-  <form id="taskForm">
-    <label for="titleInput">Task Title:</label><br>
-    <input type="text" id="titleInput" placeholder="Task title" required /><br><br>
+      <label for="descriptionInput">Description:</label><br>
+      <textarea id="descriptionInput" placeholder="Task description" required></textarea><br><br>
 
-    <label for="descriptionInput">Description:</label><br>
-    <textarea id="descriptionInput" placeholder="Task description" required></textarea><br><br>
+      <label for="dueDateInput">Due Date:</label><br>
+      <input type="date" id="dueDateInput" /><br><br>
 
-    <label for="dueDateInput">Due Date:</label><br>
-    <input type="date" id="dueDateInput" /><br><br>
+      <label for="categoryInput">Category:</label><br>
+      <input type="text" id="categoryInput" placeholder="e.g. Exam, Project" required /><br><br>
 
-    <label for="categoryInput">Category:</label><br>
-    <input type="text" id="categoryInput" placeholder="e.g. Exam, Project" required /><br><br>
+      <label for="priorityInput">Priority:</label><br>
+      <select id="priorityInput" required>
+        <option value="">-- Select Priority --</option>
+        <option value="Low">Low</option>
+        <option value="Medium">Medium</option>
+        <option value="High">High</option>
+      </select><br><br>
 
-    <label for="priorityInput">Priority:</label><br>
-    <select id="priorityInput" required>
-      <option value="">-- Select Priority --</option>
-      <option value="Low">Low</option>
-      <option value="Medium">Medium</option>
-      <option value="High">High</option>
-    </select><br><br>
+      <button type="submit">Add Task</button>
+      <p id="formError"></p>
+    </form>
+  
 
-    <button type="submit">Add Task</button>
-    <p id="formError"></p>
-  </form>
+    <!-- Task List Section -->
+    <!-- <h2>📌 All Tasks</h2> -->
+    <div id="tasksList">
+      <!-- Tasks will be added here dynamically -->
+      <!-- sample:  <div class = "task"> 
+        <li>
+          <input type="checkbox" onchange="toggleTask('${task._id}')" ${isChecked} />
+          <strong>${task.title}</strong> - ${task.description}
+          <button onclick="deleteTask('${task._id}')">delete</button>
+          <br>
+          <small>Due: ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'None'} | Category: ${task.category} | Priority: ${task.priority}</small>
+        </li>
+      </div> -->
+    </div>
+  </div>
+  <!-- lower part: filter options adn filtered tasks -->
 
-  <!-- Task List Section -->
-  <h2>📌 All Tasks</h2>
-  <div id="tasksList">
-    <!-- Tasks will be added here dynamically -->
-     <!-- sample:  <div class = "task"> 
-      <li>
-        <input type="checkbox" onchange="toggleTask('${task._id}')" ${isChecked} />
-        <strong>${task.title}</strong> - ${task.description}
-        <button onclick="deleteTask('${task._id}')">delete</button>
-        <br>
-        <small>Due: ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'None'} | Category: ${task.category} | Priority: ${task.priority}</small>
-      </li>
-    </div> -->
+  <div id="filtered-tasks">
+    
   </div>
 
   <!-- Footer -->

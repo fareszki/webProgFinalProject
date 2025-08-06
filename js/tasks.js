@@ -8,12 +8,32 @@ const dueDateInput = document.getElementById('dueDateInput');
 const categoryInput = document.getElementById('categoryInput');
 const priorityInput = document.getElementById('priorityInput');
 
-// Load tasks
-window.onload = loadTasks;
+//filter
+const filter = document.getElementById("filterBtn")
+const clear = document.getElementById("clearBtn")
+const categoryFilter = document.getElementById("filterCategory");
+const priorityFilter = document.getElementById("filterPriority");
+const overdueFilter = document.getElementById("filterOverdue");
+const dueDateFilter = document.getElementById("filterDueDate");
+const startDateFilter = document.getElementById("startDate");
+const endDateFilter = document.getElementById("endDate");
 
-async function loadTasks() {
-  const res = await fetch('http://localhost:3030/api/tasks');
-  const tasks = await res.json();
+const categorySelect = document.getElementById("filterCategory");
+
+// Load tasks
+window.onload = () => {
+  loadTasks();
+  loadCategories();
+}
+
+async function loadTasks(filteredTasks = null) {
+  let tasks;
+  if(!filteredTasks) {
+    const res = await fetch('http://localhost:3030/api/tasks');
+    tasks = await res.json();
+  } else {
+    tasks = filteredTasks;
+  }
 
   tasksList.innerHTML = '';
 
@@ -61,10 +81,82 @@ form.addEventListener('submit', async (e) => {
     form.reset();
     errorText.textContent = '';
     loadTasks();
+    loadCategories();
   } else {
     errorText.textContent = "Error creating task.";
   }
 });
+
+// Filter Task
+filter.addEventListener('click', async (e) => {
+  e.preventDefault();
+
+  const category = categoryFilter.value
+  const priority = priorityFilter.value
+  const dueDate = dueDateFilter.value
+  const overdue = overdueFilter.checked
+  const startDate = startDateFilter.value
+  const endDate = endDateFilter.value
+
+  //query url
+  let queryString = '';
+  const params = [];
+
+  if (category) params.push(`category=${encodeURIComponent(category)}`);
+  if (priority) params.push(`priority=${encodeURIComponent(priority)}`);
+  if (overdue) params.push(`overdue=true`);
+  if (dueDate) params.push(`dueDate=${encodeURIComponent(dueDate)}`);
+  if (startDate) params.push(`startDate=${encodeURIComponent(startDate)}`);
+  if (endDate) params.push(`endDate=${encodeURIComponent(endDate)}`);
+
+  queryString += params.join('&');
+
+  try {
+    const res = await fetch(`http://localhost:3030/api/tasks?${queryString}`)
+    const filtered = await res.json()
+    if (filtered && filtered.length === 0) {
+      document.getElementById("tasksList").innerHTML = `
+      <p style="text-align: center; color: white; font-weight: bold; margin-top: 30px;font-size:xx-large">
+      No tasks available!
+      </p>
+      `;
+  } else {
+    console.log(`http://localhost:3030/api/tasks?${queryString}`); //! check
+    loadTasks(filtered)
+  }
+  } catch (error) {
+    console.log("Error fetching filtered tasks!", error);    
+  }
+})
+
+//get categories
+async function loadCategories() {
+  try {
+    const res = await fetch("http://localhost:3030/api/tasks/categories");
+    const categories = await res.json();
+
+    categorySelect.innerHTML = `<option value="">All Categories</option>`;
+
+    categories.forEach((cat) => {
+      categorySelect.innerHTML += `<option value="${cat}">${cat}</option>`;
+    });
+  } catch (error) {
+    console.error("Error loading categories:", error);
+  }
+}
+
+clear.addEventListener('click', async (e) => {
+  e.preventDefault();
+
+  //clear inputs
+  document.getElementById("filterCategory").value = '';
+  document.getElementById("filterPriority").value = '';
+  document.getElementById("filterDueDate").value = '';
+  document.getElementById("startDate").value = '';
+  document.getElementById("endDate").value = '';
+
+  loadTasks();
+})
 
 // Delete task
   async function deleteTask(id) {
@@ -72,7 +164,10 @@ form.addEventListener('submit', async (e) => {
     method: 'DELETE'
   });
 
-  if (res.ok) loadTasks();
+  if (res.ok) { 
+    loadTasks(); 
+    loadCategories();
+  }
 }
 
 // Toggle completed
