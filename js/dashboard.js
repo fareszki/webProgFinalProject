@@ -90,7 +90,7 @@ async function loadPinnedNotes() {
 
 // Load quote of the day
 // Load a random motivational quote
-async function loadQuote() {
+function loadQuote() {
   fetch(`../quotes.json`)
   .then(response => {
     if (!response.ok) throw new Error("Failed to fetch quotes");
