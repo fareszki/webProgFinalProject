@@ -48,15 +48,6 @@ const taskSchema = new mongoose.Schema({
 //mongo model
 const Task = mongoose.model('Task', taskSchema);
 
-//Routes 
-//get all tasks
-// app.get("/api/tasks", async (req,res) => {
-//     const tasks = await Task.find({});
-    
-//     res.json(tasks);
-// })
-
-
 // Get all or filtered tasks
 app.get("/api/tasks", async (req, res) => {
   try {
@@ -74,8 +65,10 @@ app.get("/api/tasks", async (req, res) => {
 
     // Filter by overdue
     if (req.query.overdue) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // strip time to 00:00:00
       filter.dueDate = {
-        $lt: new Date(),
+        $lt: today,
       };
       filter.isCompleted = false;
     }
@@ -112,24 +105,6 @@ app.get("/api/tasks/categories", async (req, res) => {
   }
 });
 
-
-// //get today tasks
-// app.get('/api/tasks/today', async (req, res) => {
-//   const today = new Date();
-//   today.setHours(0, 0, 0, 0);
-//   const tomorrow = new Date(today);
-//   tomorrow.setDate(today.getDate() + 1);
-
-//   try {
-//     const tasks = await Task.find({
-//       dueDate: { $gte: today, $lt: tomorrow }
-//     });
-//     res.json(tasks);
-//   } catch (err) {
-//     res.status(500).json({ msg: 'Error fetching today\'s tasks' });
-//   }
-// });
-
 //get upcoming tasks
 app.get("/api/tasks/upcomingTasks", async(req,res) => {
   const now = new Date();
@@ -145,6 +120,7 @@ app.get("/api/tasks/upcomingTasks", async(req,res) => {
 
   res.json(upcomingTasks);
 })
+
 //create new task
 app.post("/api/tasks", async(req,res) => {
     const body = req.body;
@@ -164,6 +140,7 @@ app.post("/api/tasks", async(req,res) => {
     console.log("New Task Created: ", newTask);
     return res.status(201).json({msg: "success"})
 })
+
 //check-uncheck task 
 app.patch('/api/tasks/:id', async (req, res) => {
     const task = await Task.findById(req.params.id);
@@ -261,3 +238,4 @@ app.delete("/api/notes/:id", async (req, res) => {
       res.status(500).json({ msg: "Error deleting note" });
     }
 });
+

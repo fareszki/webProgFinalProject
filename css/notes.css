@@ -1,13 +1,9 @@
-/* notes.css */
-
 body {
-background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-background-size: 400% 400%;
-animation: gradientBG 15s ease infinite;
-height: 100%;
-width: 100%;
-padding: 0;
+  background: linear-gradient(to bottom, #03bd66, #7a00ff);
+  background-size: 100% 300%;
+  animation: verticalScroll 15s ease infinite;
 }
+
 /* === Background Animation === */
 @keyframes verticalScroll {
   0% {
@@ -20,6 +16,7 @@ padding: 0;
     background-position: 0% 0%;
   }
 }
+
 .notes-container {
     display: flex;
     align-items: flex-start;
@@ -158,8 +155,8 @@ padding: 0;
       grid-template-columns: repeat(2, 1fr);
     }
     #noteForm textarea {
-        min-height: 400px;   /* makes it taller */
-        width: 100%;         /* full width of the form */
+        min-height: 400px;   
+        width: 100%;         
         resize: none;
       }
 

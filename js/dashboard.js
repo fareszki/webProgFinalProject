@@ -26,12 +26,13 @@ async function loadTasks() {
     const res = await fetch(`${API_BASE}/api/tasks`);
     const tasks = await res.json();
 
-    let completedTasksCount = tasks.filter(task => task.isCompleted).length;
-    updateProgressBar( completedTasksCount ,tasks.length)
-
     taskList.innerHTML = '';
     const today = new Date().toISOString().split('T')[0];
     const todaysTasks = tasks.filter(task => task.dueDate && task.dueDate.startsWith(today));
+
+    let completedTasksCount = todaysTasks.filter(task => task.isCompleted).length;
+    updateProgressBar( completedTasksCount ,todaysTasks.length)
+
 
     if (todaysTasks.length === 0) {
       taskList.innerHTML = '<p>No tasks for today 🎉</p>';
@@ -101,7 +102,7 @@ async function loadPinnedNotes() {
 // Load quote of the day
 // Load a random motivational quote
 function loadQuote() {
-  fetch(`../quotes.json`)
+  fetch('../json/quotes.json')
   .then(response => {
     if (!response.ok) throw new Error("Failed to fetch quotes");
     return response.json();
@@ -125,17 +126,6 @@ async function loadUpcoming() {
     upcomingList.innerHTML = ''
     const res = await fetch(`${API_BASE}/api/tasks/upcomingTasks`);
     const upcoming = await res.json();
-
-    // upcomingList.innerHTML = '';
-    // const today = new Date();
-    // const nextWeek = new Date();
-    // nextWeek.setDate(today.getDate() + 7);
-
-    // const upcoming = tasks.filter(task => {
-    //   if (!task.dueDate) return false;
-    //   const date = new Date(task.dueDate);
-    //   return date >= today && date <= nextWeek;
-    // }).slice(0, 5);
 
     if (upcoming.length === 0) {
       upcomingList.innerHTML = '<p>No upcoming deadlines 🎯</p>';
@@ -228,10 +218,18 @@ async function loadPastdueTasks() {
     const tasks = await res.json();
 
     overdueTasksList.innerHTML = '';
-    const overdueTasks = tasks.filter(task => new Date(task.dueDate) < new Date() && !task.isCompleted);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    const overdueTasks = tasks.filter(task => {
+      const taskDueDate = new Date(task.dueDate);
+      taskDueDate.setHours(0, 0, 0, 0);
+      return taskDueDate < today && !task.isCompleted;
+    });
 
     if (overdueTasks.length === 0) {
-      overdueTasksList.innerHTML = '<p>No tasks for today 🎉</p>';
+      overdueTasksList.innerHTML = '<p>No tasks for today </p>';
       return;
     }
     let html = ''
@@ -265,9 +263,5 @@ function updateProgressBar(completed, total) {
   progressText.textContent = percent + '%';
 }
 
-// Example usage
-const totalTasks = 20;
-const completedTasks = 8;
-updateProgressBar(completedTasks, totalTasks);
 
 updatePomodoroDisplay();

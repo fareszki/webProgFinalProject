@@ -111,30 +111,30 @@ async function filterTasks() {
 
   //query url
   let queryString = '';
-  let queryObject = {category,priority,overdue,dueDate,startDate,endDate}
-  console.log(queryObject);
-
-
-  for (const key in queryObject) {
-    if (queryObject[key]) {
-      queryString += `&${key}=${encodeURIComponent(queryObject[key])}`
-    }
-  }
   
-  // if (category) params.push(`category=${encodeURIComponent(category)}`);
-  // if (priority) params.push(`priority=${encodeURIComponent(priority)}`);
-  // if (overdue) params.push(`overdue=true`);
-  // if (dueDate) params.push(`dueDate=${encodeURIComponent(dueDate)}`);
-  // if (startDate) params.push(`startDate=${encodeURIComponent(startDate)}`);
-  // if (endDate) params.push(`endDate=${encodeURIComponent(endDate)}`);
+  
+  // let queryObject = {category,priority,overdue,dueDate,startDate,endDate}
+  // for (const key in queryObject) {
+  //   if (queryObject[key]) {
+  //     queryString += `&${key}=${encodeURIComponent(queryObject[key])}`
+  //   }
+  // }
+  // queryString = queryString.slice(1);
 
-  // queryString += params.join('&');
+  const params = [];
+  
+  if (category) params.push(`category=${encodeURIComponent(category)}`);
+  if (priority) params.push(`priority=${encodeURIComponent(priority)}`);
+  if (overdue) params.push(`overdue=true`);
+  if (dueDate) params.push(`dueDate=${encodeURIComponent(dueDate)}`);
+  if (startDate) params.push(`startDate=${encodeURIComponent(startDate)}`);
+  if (endDate) params.push(`endDate=${encodeURIComponent(endDate)}`);
 
-  // console.log(queryString);
+  queryString += params.join('&');
   console.log(queryString);
 
   try {
-    const res = await fetch(`http://localhost:3030/api/tasks?${queryString.slice(1)}`)
+    const res = await fetch(`http://localhost:3030/api/tasks?${queryString}`)
     const filteredTasks = await res.json()
     if (filteredTasks && filteredTasks.length === 0) {
       document.getElementById("tasksList").innerHTML = `
