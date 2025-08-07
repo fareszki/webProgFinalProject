@@ -23,7 +23,7 @@ async function loadNotes ()  {
                   📌
                   <input type="checkbox" onchange="pinnNote('${note._id}')" ${isPinned} />
                 </label>
-                <button class="delete-btn" onclick="deleteNote('${note._id}')">delete</button>
+                <button class="delete-btn" onclick="deleteNote('${note._id}')">Delete</button>
               </div>
             </div>
             <div class="note-content">${note.content}</div>

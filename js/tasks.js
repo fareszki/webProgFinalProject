@@ -54,7 +54,7 @@ async function loadTasks(filteredTasks = null) {
       <div class ="task-content">
         <input type="checkbox" onchange="toggleTask('${task._id}')" ${isChecked} />
         <strong>${task.title}</strong> - ${task.description}
-        <button onclick="deleteTask('${task._id}')">delete</button>
+        <button onclick="deleteTask('${task._id}')">Delete</button>
         <br>
         <small>Due: ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'None'} | Category: ${task.category} | Priority: ${task.priority}</small>
       </div>

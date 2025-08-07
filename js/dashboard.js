@@ -46,7 +46,7 @@ async function loadTasks() {
         <div class ="task-content">
         <input type="checkbox" onchange="toggleTask('${task._id}')" ${isChecked} />
         <strong>${task.title}</strong> - ${task.description}
-        <button onclick="deleteTask('${task._id}')">delete</button>
+        <button onclick="deleteTask('${task._id}')">Delete</button>
         <br>
         <small>Due: ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'None'} | Category: ${task.category} | Priority: ${task.priority}</small>
       </div>
@@ -85,7 +85,7 @@ async function loadPinnedNotes() {
               <small class="smallDate">Created: ${new Date(note.createdAt).toLocaleDateString()}</small>
             </div>
               <div class ="button-container">
-              <button class="delete-btn"onclick="pinnNote('${note._id}')">Unpin</button>
+              <button class="delete-btn" style="padding: 7px" onclick="pinnNote('${note._id}')"><img src="../images/unpin.png" alt="unpin" width="40px"></button>
               </div>
           </div>
       `;
@@ -242,7 +242,7 @@ async function loadPastdueTasks() {
         <div class = "task ${completedClass}" id="task-${task._id}" data-priority="${task.priority}"> 
         <div class ="task-content">
         <strong>${task.title}</strong> - ${task.description}
-        <button style="margin-left:-20px" onclick="toggleTask('${task._id}')">complete</button>
+        <button style="margin-left:-20px" onclick="toggleTask('${task._id}')">Complete</button>
         <br>
         <small>Due: ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'None'} | Category: ${task.category} | Priority: ${task.priority}</small>
       </div>

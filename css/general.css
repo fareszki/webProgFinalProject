@@ -91,7 +91,7 @@ h2 {
 
 .nav-links li a:hover {
   background-color: var(--primary-color);
-  border-radius: 3px;
+  border-radius: 10px;
   color: white;
 }
 

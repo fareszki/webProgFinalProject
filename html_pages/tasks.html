@@ -11,7 +11,7 @@
   <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">
-      <img src="../images/appLogo.png" alt="StudyBuddy Logo">
+      <a href="dashboard.html"><img src="../images/appLogo.png" alt="StudyBuddy Logo"></a>
     </div>
     <ul class="nav-links">
       <li><a href="dashboard.html">Home</a></li>
@@ -109,7 +109,7 @@
         <li>
           <input type="checkbox" onchange="toggleTask('${task._id}')" ${isChecked} />
           <strong>${task.title}</strong> - ${task.description}
-          <button onclick="deleteTask('${task._id}')">delete</button>
+          <button onclick="deleteTask('${task._id}')">Delete</button>
           <br>
           <small>Due: ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'None'} | Category: ${task.category} | Priority: ${task.priority}</small>
         </li>
