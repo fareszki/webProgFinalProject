@@ -26,9 +26,6 @@
     <table cellspacing="30" >
       <tr>
         <td>
-          <img src="../images/filter.jpg" alt="filter icon" width="40px">
-        </td>
-        <td>
           <span>Filter Options:</span>
         </td>
         <td>
@@ -58,12 +55,23 @@
           <input type="date" id="endDate">
         </td>
         <td>
-          <button id="filterBtn">FILTER</button>
-          <button id="clearBtn">Clear</button>
+          <button id="filterBtn">Filter</button>
+          <button class="delete-btn" id="clearBtn">Clear</button>
         </td>
       </tr>
     </table>
   </div>
+
+
+  <div class="task-stats">
+    <div>Total Tasks:  <span id="total-count"></span></div>
+    <div>Filtered Tasks:  <span id="filtered-count"></span></div>
+    <div>Completed Tasks:  <span id="completed-count"></span></div>
+    <div>Uncompleted Tasks:  <span id="uncompleted-count"></span></div>
+    <div>Overdue Tasks:  <span id="overdue-count"></span></div>
+  </div>
+
+
  <!-- upper part: form and all tasks -->
   <div id="task-section">
     <!-- Task Form -->
@@ -119,9 +127,9 @@
     <div class="footer-content">
       <p>&copy; 2025 StudyBuddy. All rights reserved.</p>
       <ul class="footer-links">
-        <li><a href="#">Instagram</a></li>
-        <li><a href="#">X</a></li>
-        <li><a href="#">Facebook</a></li>
+        <li><a href="https://www.instagram.com/">Instagram</a></li>
+        <li><a href="https://x.com/">X</a></li>
+        <li><a href="https://www.facebook.com/">Facebook</a></li>
       </ul>
     </div>
   </footer>

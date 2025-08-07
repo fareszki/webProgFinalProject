@@ -64,7 +64,7 @@ app.get("/api/tasks", async (req, res) => {
 
     // Filter by priority
     if (req.query.priority) {
-      filter.priority = req.query.priority;
+      filter.priority = req.query.priority; // filter {priority: high}
     }
 
     // Filter by category
@@ -79,7 +79,7 @@ app.get("/api/tasks", async (req, res) => {
       };
       filter.isCompleted = false;
     }
-
+    
     // Filter by exact due date (YYYY-MM-DD)
     if (req.query.dueDate) {
       filter.dueDate = req.query.dueDate;

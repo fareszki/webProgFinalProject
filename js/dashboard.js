@@ -5,6 +5,7 @@ const pinnedNotes = document.getElementById('pinnedNotes');
 const quoteText = document.getElementById('quoteText');
 const upcomingList = document.getElementById('upcomingList');
 const pomodoroTimer = document.getElementById('pomodoro-timer');
+const overdueTasksList = document.getElementById('overdueList');
 
 let pomoInterval;
 let pomoTime = 25 * 60; // 25 minutes in seconds
@@ -15,6 +16,7 @@ window.onload = () => {
   loadPinnedNotes();
   loadQuote();
   loadUpcoming();
+  loadPastdueTasks();
 };
 
 // Load today's tasks
@@ -23,6 +25,9 @@ async function loadTasks() {
   try {
     const res = await fetch(`${API_BASE}/api/tasks`);
     const tasks = await res.json();
+
+    let completedTasksCount = tasks.filter(task => task.isCompleted).length;
+    updateProgressBar( completedTasksCount ,tasks.length)
 
     taskList.innerHTML = '';
     const today = new Date().toISOString().split('T')[0];
@@ -169,7 +174,10 @@ async function deleteTask(id) {
   const res = await fetch(`http://localhost:3030/api/tasks/${id}`, {
     method: 'PATCH'
   });
-  if (res.ok) loadTasks();
+  if (res.ok){ 
+    loadTasks();
+    loadPastdueTasks();
+  }
 }
 
 // Pomodoro Timer Controls
@@ -213,5 +221,53 @@ async function pinnNote(id) {
 
   if(res.ok) loadPinnedNotes();
 }
+
+async function loadPastdueTasks() {
+  try {
+    const res = await fetch(`${API_BASE}/api/tasks`);
+    const tasks = await res.json();
+
+    overdueTasksList.innerHTML = '';
+    const overdueTasks = tasks.filter(task => new Date(task.dueDate) < new Date() && !task.isCompleted);
+
+    if (overdueTasks.length === 0) {
+      overdueTasksList.innerHTML = '<p>No tasks for today 🎉</p>';
+      return;
+    }
+    let html = ''
+    for (const task of overdueTasks) {
+      const isChecked = task.isCompleted ? 'checked' : '';
+      const completedClass = task.isCompleted ? 'completed' : '';
+      html += `
+        <div class = "task ${completedClass}" id="task-${task._id}" data-priority="${task.priority}"> 
+        <div class ="task-content">
+        <strong>${task.title}</strong> - ${task.description}
+        <button style="margin-left:-20px" onclick="toggleTask('${task._id}')">complete</button>
+        <br>
+        <small>Due: ${task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'None'} | Category: ${task.category} | Priority: ${task.priority}</small>
+      </div>
+    </div>
+      `;
+    }
+    overdueTasksList.innerHTML = html;
+  } catch (err) {
+    console.error('Failed to load tasks:', err);
+    overdueTasksList.innerHTML = '<p style="color:red;">Error loading tasks</p>';
+  }
+}
+function updateProgressBar(completed, total) {
+  const progressBar = document.getElementById('progress-bar');
+  const progressText = document.getElementById('progress-text');
+
+  const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+
+  progressBar.style.width = percent + '%';
+  progressText.textContent = percent + '%';
+}
+
+// Example usage
+const totalTasks = 20;
+const completedTasks = 8;
+updateProgressBar(completedTasks, totalTasks);
 
 updatePomodoroDisplay();

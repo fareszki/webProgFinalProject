@@ -43,7 +43,7 @@ h1 {
   margin: 30px 0;
   font-weight: bold;
   font-size: 70px;
-  color: black;
+  color: white;
 }
 
 h2 {
@@ -149,22 +149,12 @@ button:hover {
   margin-top: 10px;
 }
 
-.footer-links li a {
-  color: var(--primary-color);
+.footer-links li a, .footer-content p  {
+  color: white;
   text-decoration: none;
 }
 
 .footer-links li a:hover {
-  text-decoration: underline;
-}
-
-/* === Links (global) === */
-a {
-  color: #0645AD;
-  text-decoration: none;
-}
-
-a:hover {
   text-decoration: underline;
 }
 
@@ -209,13 +199,6 @@ select:focus {
   color: #666666;
 }
 
-.task button:hover {
-  background-color: var(--danger-dark);
-}
-
-.task button:active {
-  background-color: var(--danger-color);
-}
 
 .task.completed .task-content {
   background-color: #d4edda;

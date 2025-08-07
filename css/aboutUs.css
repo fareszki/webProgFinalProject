@@ -1,12 +1,21 @@
 body {
-  margin: 0;
-  padding: 0;
-  background-image: url('../images/papers/49.jpg'); /* Replace with your image path */
-  background-size: cover;        /* Make image cover the whole screen */
-  background-position: center;   /* Center the image */
-  background-repeat: no-repeat;  /* Do not repeat the image */
-  height: 100%;                 /* Full viewport height */
-} 
+  background: linear-gradient(to bottom, #03bd66, #7a00ff);
+  background-size: 100% 300%;
+  animation: verticalScroll 15s ease infinite;
+}
+
+/* === Background Animation === */
+@keyframes verticalScroll {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
 .about-section {
   margin-top: 20px;
   text-align: center;
@@ -22,12 +31,12 @@ body {
     font-size: 3em;
     font-weight: bold;
     margin-bottom: 20px;
-    color: #1a1a1a;
+    color: white;
   }
   
   .about-text p {
     font-size: 1.1em;
-    color: #555;
+    color: white;
     max-width: 800px;
     margin: 0 auto ;
   }
@@ -106,12 +115,6 @@ body {
     height: auto;
     border-radius: 10px;
     margin-bottom: 20px;
-  }
-  
-  .team-member h2 {
-    font-size: 1.5em;
-    color: #222;
-    margin-bottom: 10px;
   }
   
   .team-member p {

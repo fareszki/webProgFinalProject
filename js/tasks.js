@@ -9,7 +9,7 @@ const categoryInput = document.getElementById('categoryInput');
 const priorityInput = document.getElementById('priorityInput');
 
 //filter
-const filter = document.getElementById("filterBtn")
+const filterBtn = document.getElementById("filterBtn")
 const clear = document.getElementById("clearBtn")
 const categoryFilter = document.getElementById("filterCategory");
 const priorityFilter = document.getElementById("filterPriority");
@@ -19,6 +19,12 @@ const startDateFilter = document.getElementById("startDate");
 const endDateFilter = document.getElementById("endDate");
 
 const categorySelect = document.getElementById("filterCategory");
+
+const totalTasks = document.getElementById('total-count');
+const filteredTasks = document.getElementById('filtered-count');
+const completedTasks = document.getElementById('completed-count');
+const uncompletedTasks = document.getElementById('uncompleted-count');
+const overdueTasks = document.getElementById('overdue-count');
 
 // Load tasks
 window.onload = () => {
@@ -34,6 +40,8 @@ async function loadTasks(filteredTasks = null) {
   } else {
     tasks = filteredTasks;
   }
+
+  loadStatus(tasks);
 
   tasksList.innerHTML = '';
 
@@ -88,9 +96,12 @@ form.addEventListener('submit', async (e) => {
 });
 
 // Filter Task
-filter.addEventListener('click', async (e) => {
+filterBtn.addEventListener('click', (e) => {
   e.preventDefault();
+  filterTasks()
+});
 
+async function filterTasks() {
   const category = categoryFilter.value
   const priority = priorityFilter.value
   const dueDate = dueDateFilter.value
@@ -100,21 +111,32 @@ filter.addEventListener('click', async (e) => {
 
   //query url
   let queryString = '';
-  const params = [];
+  let queryObject = {category,priority,overdue,dueDate,startDate,endDate}
+  console.log(queryObject);
 
-  if (category) params.push(`category=${encodeURIComponent(category)}`);
-  if (priority) params.push(`priority=${encodeURIComponent(priority)}`);
-  if (overdue) params.push(`overdue=true`);
-  if (dueDate) params.push(`dueDate=${encodeURIComponent(dueDate)}`);
-  if (startDate) params.push(`startDate=${encodeURIComponent(startDate)}`);
-  if (endDate) params.push(`endDate=${encodeURIComponent(endDate)}`);
 
-  queryString += params.join('&');
+  for (const key in queryObject) {
+    if (queryObject[key]) {
+      queryString += `&${key}=${encodeURIComponent(queryObject[key])}`
+    }
+  }
+  
+  // if (category) params.push(`category=${encodeURIComponent(category)}`);
+  // if (priority) params.push(`priority=${encodeURIComponent(priority)}`);
+  // if (overdue) params.push(`overdue=true`);
+  // if (dueDate) params.push(`dueDate=${encodeURIComponent(dueDate)}`);
+  // if (startDate) params.push(`startDate=${encodeURIComponent(startDate)}`);
+  // if (endDate) params.push(`endDate=${encodeURIComponent(endDate)}`);
+
+  // queryString += params.join('&');
+
+  // console.log(queryString);
+  console.log(queryString);
 
   try {
-    const res = await fetch(`http://localhost:3030/api/tasks?${queryString}`)
-    const filtered = await res.json()
-    if (filtered && filtered.length === 0) {
+    const res = await fetch(`http://localhost:3030/api/tasks?${queryString.slice(1)}`)
+    const filteredTasks = await res.json()
+    if (filteredTasks && filteredTasks.length === 0) {
       document.getElementById("tasksList").innerHTML = `
       <p style="text-align: center; color: white; font-weight: bold; margin-top: 30px;font-size:xx-large">
       No tasks available!
@@ -122,12 +144,12 @@ filter.addEventListener('click', async (e) => {
       `;
   } else {
     console.log(`http://localhost:3030/api/tasks?${queryString}`); //! check
-    loadTasks(filtered)
+    loadTasks(filteredTasks);
   }
   } catch (error) {
     console.log("Error fetching filtered tasks!", error);    
   }
-})
+}
 
 //get categories
 async function loadCategories() {
@@ -175,8 +197,35 @@ clear.addEventListener('click', async (e) => {
   const res = await fetch(`http://localhost:3030/api/tasks/${id}`, {
     method: 'PATCH'
   });
-  if (res.ok) loadTasks();
+  if (res.ok) filterTasks();
 }
 
+  async function loadStatus(filteredTasksArr = null){
+    let totalCount, filteredCount 
+    let completedCount = 0; 
+    let uncompletedCount = 0;
+    let overdueCount = 0;
+    const res = await fetch('http://localhost:3030/api/tasks');
+    allTasks = await res.json();
 
+    totalCount = allTasks.length;
+
+    if (!filteredTasksArr) {
+      filteredTasksArr = allTasks
+    }
+     
+    filteredCount = filteredTasksArr.length;
+
+    completedCount = filteredTasksArr.filter(task => task.isCompleted).length;
+    uncompletedCount = filteredCount - completedCount;
+    overdueCount = filteredTasksArr.filter(task => new Date(task.dueDate) < new Date() && !task.isCompleted).length;
+
+    console.log(totalCount, filteredCount,completedCount, uncompletedCount, overdueCount);
+
+    totalTasks.innerHTML = totalCount;
+    filteredTasks.innerHTML = filteredCount; 
+    completedTasks.innerHTML = completedCount;
+    uncompletedTasks.innerHTML = uncompletedCount;
+    overdueTasks.innerHTML = overdueCount;
+  }
 
