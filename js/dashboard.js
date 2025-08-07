@@ -263,5 +263,34 @@ function updateProgressBar(completed, total) {
   progressText.textContent = percent + '%';
 }
 
+function demo(){
+  fetch('http://localhost:3030/api/loadTasksDemo', {
+    method: 'POST'
+  })
+  .then(res => {
+    if (!res.ok) {
+      return res.text().then(errText => {
+        throw new Error(`HTTP ${res.status} - ${errText}`);
+      });
+    }
+    return res.json();
+  })
+  .then(data => console.log(data))
+  .catch(err => console.error('Fetch error:', err));
+
+  fetch('http://localhost:3030/api/loadNotesDemo', {
+    method: 'POST'
+  })
+  .then(res => {
+    if (!res.ok) {
+      return res.text().then(errText => {
+        throw new Error(`HTTP ${res.status} - ${errText}`);
+      });
+    }
+    return res.json();
+  })
+  .then(data => console.log(data))
+  .catch(err => console.error('Fetch error:', err));
+}
 
 updatePomodoroDisplay();

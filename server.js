@@ -239,3 +239,143 @@ app.delete("/api/notes/:id", async (req, res) => {
     }
 });
 
+//extra for presentation only : 
+
+
+app.post('/api/loadTasksDemo', async (req, res) => {
+  try {
+    const result = await Task.insertMany([
+      {
+        "title": "Study JavaScript",
+        "description": "Finish async/await lesson",
+        "dueDate": "2025-08-07T00:00:00.000Z",
+        "category": "Web Development",
+        "priority": "High",
+        "isCompleted": false
+      },
+      {
+        "title": "Read MongoDB Docs",
+        "description": "Indexing and aggregation chapters",
+        "dueDate": "2025-08-07T00:00:00.000Z",
+        "category": "Database",
+        "priority": "Medium",
+        "isCompleted": false
+      },
+      {
+        "title": "Workout Session",
+        "description": "Upper body strength training",
+        "dueDate": "2025-08-07T00:00:00.000Z",
+        "category": "Health",
+        "priority": "Low",
+        "isCompleted": false
+      },
+      {
+        "title": "Team Meeting",
+        "description": "Sprint planning discussion",
+        "dueDate": "2025-08-07T00:00:00.000Z",
+        "category": "Work",
+        "priority": "High",
+        "isCompleted": false
+      },
+      {
+        "title": "Submit Project Proposal",
+        "description": "Capstone idea and initial plan",
+        "dueDate": "2025-08-12T00:00:00.000Z",
+        "category": "University",
+        "priority": "High",
+        "isCompleted": false
+      },
+      {
+        "title": "Buy Groceries",
+        "description": "Get vegetables and fruits",
+        "dueDate": "2025-08-13T00:00:00.000Z",
+        "category": "Personal",
+        "priority": "Medium",
+        "isCompleted": false
+      },
+      {
+        "title": "Dentist Appointment",
+        "description": "Routine checkup and cleaning",
+        "dueDate": "2025-08-14T00:00:00.000Z",
+        "category": "Health",
+        "priority": "Low",
+        "isCompleted": false
+      },
+      {
+        "title": "Submit Assignment",
+        "description": "Web programming task submission",
+        "dueDate": "2025-08-06T00:00:00.000Z",
+        "category": "University",
+        "priority": "High",
+        "isCompleted": false
+      },
+      {
+        "title": "Laundry Day",
+        "description": "Wash and fold clothes",
+        "dueDate": "2025-08-06T00:00:00.000Z",
+        "category": "Chores",
+        "priority": "Low",
+        "isCompleted": false
+      }
+    ]);
+
+    res.status(201).json({
+      message: `${result.length} tasks inserted successfully`,
+      tasks: result
+    });
+  } catch (err) {
+    console.error("Error inserting tasks:", err);
+    res.status(500).json({ error: "Failed to insert tasks" });
+  }
+});
+app.post('/api/loadNotesDemo', async (req, res) => {
+  try {
+    const result = await Note.insertMany([
+      {
+        "title": "JavaScript Basics",
+        "content": "Variables, functions, and loops are fundamental to JS. Remember the difference between var, let, and const.",
+        "pinned": true
+      },
+      {
+        "title": "MongoDB Aggregation",
+        "content": "Aggregation pipelines allow for data transformation. Key stages include `$match`, `$group`, and `$sort`.",
+        "pinned": false
+      },
+      {
+        "title": "Operating Systems - Deadlocks",
+        "content": "Deadlock occurs when processes wait indefinitely for resources. Four conditions: mutual exclusion, hold and wait, no preemption, circular wait.",
+        "pinned": true
+      },
+      {
+        "title": "Ethics in Technology",
+        "content": "Discusses intellectual property, digital rights, and professional responsibilities. ACM code of ethics is a key reference.",
+        "pinned": false
+      },
+      {
+        "title": "Web Development Stack",
+        "content": "The MEAN stack includes MongoDB, Express.js, Angular, and Node.js. Good for full-stack JavaScript development.",
+        "pinned": true
+      },
+      {
+        "title": "Networking Protocols",
+        "content": "TCP is connection-oriented; UDP is faster but connectionless. Learn the OSI model layers: physical to application.",
+        "pinned": false
+      },
+      {
+        "title": "AI - Supervised vs Unsupervised Learning",
+        "content": "Supervised learning uses labeled data. Unsupervised learning identifies hidden patterns without labels (e.g., clustering).",
+        "pinned": false
+      }
+    ]
+    );
+
+    res.status(201).json({
+      message: `${result.length} tasks inserted successfully`,
+      tasks: result
+    });
+  } catch (err) {
+    console.error("Error inserting tasks:", err);
+    res.status(500).json({ error: "Failed to insert tasks" });
+  }
+});
+  

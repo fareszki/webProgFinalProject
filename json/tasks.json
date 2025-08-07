@@ -1,0 +1,75 @@
+[
+    {
+      "title": "Study JavaScript",
+      "description": "Finish async/await lesson",
+      "dueDate": "2025-08-07T00:00:00.000Z",
+      "category": "Web Development",
+      "priority": "High",
+      "isCompleted": false
+    },
+    {
+      "title": "Read MongoDB Docs",
+      "description": "Indexing and aggregation chapters",
+      "dueDate": "2025-08-07T00:00:00.000Z",
+      "category": "Database",
+      "priority": "Medium",
+      "isCompleted": false
+    },
+    {
+      "title": "Workout Session",
+      "description": "Upper body strength training",
+      "dueDate": "2025-08-07T00:00:00.000Z",
+      "category": "Health",
+      "priority": "Low",
+      "isCompleted": false
+    },
+    {
+      "title": "Team Meeting",
+      "description": "Sprint planning discussion",
+      "dueDate": "2025-08-07T00:00:00.000Z",
+      "category": "Work",
+      "priority": "High",
+      "isCompleted": false
+    },
+    {
+      "title": "Submit Project Proposal",
+      "description": "Capstone idea and initial plan",
+      "dueDate": "2025-08-12T00:00:00.000Z",
+      "category": "University",
+      "priority": "High",
+      "isCompleted": false
+    },
+    {
+      "title": "Buy Groceries",
+      "description": "Get vegetables and fruits",
+      "dueDate": "2025-08-13T00:00:00.000Z",
+      "category": "Personal",
+      "priority": "Medium",
+      "isCompleted": false
+    },
+    {
+      "title": "Dentist Appointment",
+      "description": "Routine checkup and cleaning",
+      "dueDate": "2025-08-14T00:00:00.000Z",
+      "category": "Health",
+      "priority": "Low",
+      "isCompleted": false
+    },
+    {
+      "title": "Submit Assignment",
+      "description": "Web programming task submission",
+      "dueDate": "2025-08-06T00:00:00.000Z",
+      "category": "University",
+      "priority": "High",
+      "isCompleted": false
+    },
+    {
+      "title": "Laundry Day",
+      "description": "Wash and fold clothes",
+      "dueDate": "2025-08-06T00:00:00.000Z",
+      "category": "Chores",
+      "priority": "Low",
+      "isCompleted": false
+    }
+  ]
+  
